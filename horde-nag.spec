@@ -3,7 +3,7 @@
 # - rename this spec to nag.spec
 
 %define	_rc		rc1
-%define	_rel	4
+%define	_rel	5
 
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
@@ -16,6 +16,7 @@ Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/nag/%{name}-h3-%{version}-%{_rc}.tar.gz
 # Source0-md5:	c6f572411894f706df19f8b649a11b2e
 Source1:	%{name}.conf
+Patch0:		%{name}-prefs.patch
 URL:		http://www.horde.org/nag/
 BuildRequires:	rpmbuild(macros) >= 1.226
 BuildRequires:	tar >= 1:1.15.1
