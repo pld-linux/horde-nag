@@ -1,0 +1,11 @@
+--- ./config/prefs.php.dist	2005-02-15 22:21:35.000000000 +0200
++++ /tmp/prefs.php	2005-08-02 11:16:33.000000000 +0300
+@@ -6,7 +6,7 @@
+  */
+ 
+ // Make sure that constants are defined.
+-@define('NAG_BASE', dirname(__FILE__) . '/..');
++@define('NAG_BASE', '/usr/share/horde/nag');
+ require_once NAG_BASE . '/lib/Nag.php';
+ 
+ $prefGroups['display'] = array(
