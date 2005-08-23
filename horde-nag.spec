@@ -2,20 +2,20 @@
 # - rename nag.spec to tldp-nag.spec
 # - rename this spec to nag.spec
 
-%define	_rc		rc1
-%define	_rel	5
+#define	_rc		rc1
+%define	_rel	0.1
 
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
 Summary(pl):	Nag - zarz±dca list zadañ
 Name:		nag
 Version:	2.0.2
-Release:	%{_rc}.%{_rel}
+Release:	%{?_rc:%{_rc}.}%{_rel}
 License:	GPL v2
 Vendor:		The Horde Project
 Group:		Applications/WWW
-Source0:	ftp://ftp.horde.org/pub/nag/%{name}-h3-%{version}-%{_rc}.tar.gz
-# Source0-md5:	c6f572411894f706df19f8b649a11b2e
+Source0:	ftp://ftp.horde.org/pub/nag/%{name}-h3-%{version}.tar.gz
+# Source0-md5:	7aa928522dadda94f02dfcbc5fb90058
 Source1:	%{name}.conf
 Patch0:		%{name}-prefs.patch
 URL:		http://www.horde.org/nag/
@@ -54,7 +54,7 @@ General Public License. Wiêcej informacji (w³±cznie z pomoc± dla
 Naga) mo¿na znale¼æ na stronie <http://www.horde.org/>.
 
 %prep
-%setup -q -n nag-h3-%{version}-%{_rc}
+%setup -q -n %{?_snap:nag}%{!?_snap:nag-h3-%{version}%{?_rc:-%{_rc}}}
 
 %install
 rm -rf $RPM_BUILD_ROOT
