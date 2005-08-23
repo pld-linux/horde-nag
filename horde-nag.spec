@@ -1,10 +1,12 @@
 # TODO
 # - rename nag.spec to tldp-nag.spec
 # - rename this spec to nag.spec
+# - or forget it and rename all horde packages to horde-*.spec
 
 #define	_rc		rc1
-%define	_rel	0.1
+%define	_rel	0.3
 
+%define		_hordeapp	nag
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
 Summary(pl):	Nag - zarz±dca list zadañ
@@ -14,7 +16,7 @@ Release:	%{?_rc:%{_rc}.}%{_rel}
 License:	GPL v2
 Vendor:		The Horde Project
 Group:		Applications/WWW
-Source0:	ftp://ftp.horde.org/pub/nag/%{name}-h3-%{version}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
 # Source0-md5:	7aa928522dadda94f02dfcbc5fb90058
 Source1:	%{name}.conf
 Patch0:		%{name}-prefs.patch
@@ -33,7 +35,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		hordedir		/usr/share/horde
 %define		_sysconfdir		/etc/horde.org
-%define		_appdir			%{hordedir}/%{name}
+%define		_appdir			%{hordedir}/%{_hordeapp}
 
 %description
 Nag is the Horde task list application. It stores todo items, things
@@ -58,33 +60,33 @@ Naga) mo¿na znale¼æ na stronie <http://www.horde.org/>.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/cron.daily,%{_sysconfdir}/%{name}} \
+install -d $RPM_BUILD_ROOT{/etc/cron.daily,%{_sysconfdir}/%{_hordeapp}} \
 	$RPM_BUILD_ROOT%{_appdir}/{docs,lib,locale,scripts,templates,themes}
 
 cp -pR	*.php			$RPM_BUILD_ROOT%{_appdir}
 for i in config/*.dist; do
-	cp -p $i $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/$(basename $i .dist)
+	cp -p $i $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/$(basename $i .dist)
 done
-echo "<?php ?>" > 		$RPM_BUILD_ROOT%{_sysconfdir}/%{name}/conf.php
-install  config/conf.xml $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/conf.xml
-> $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/conf.php.bak
+echo "<?php ?>" > 		$RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.php
+install  config/conf.xml $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.xml
+> $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.php.bak
 
 cp -pR	lib/*			$RPM_BUILD_ROOT%{_appdir}/lib
 cp -pR	locale/*		$RPM_BUILD_ROOT%{_appdir}/locale
 cp -pR	templates/*		$RPM_BUILD_ROOT%{_appdir}/templates
 cp -pR	themes/*		$RPM_BUILD_ROOT%{_appdir}/themes
 
-ln -s %{_sysconfdir}/%{name} 	$RPM_BUILD_ROOT%{_appdir}/config
-ln -s %{_defaultdocdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
+ln -s %{_sysconfdir}/%{_hordeapp} 	$RPM_BUILD_ROOT%{_appdir}/config
+ln -s %{_docdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
 
-install %{SOURCE1} 		$RPM_BUILD_ROOT%{_sysconfdir}/apache-%{name}.conf
+install %{SOURCE1} 		$RPM_BUILD_ROOT%{_sysconfdir}/apache-%{_hordeapp}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ ! -f %{_sysconfdir}/%{name}/conf.php.bak ]; then
-	install /dev/null -o root -g http -m660 %{_sysconfdir}/%{name}/conf.php.bak
+if [ ! -f %{_sysconfdir}/%{_hordeapp}/conf.php.bak ]; then
+	install /dev/null -o root -g http -m660 %{_sysconfdir}/%{_hordeapp}/conf.php.bak
 fi
 
 if [ "$1" = 1 ]; then
@@ -99,12 +101,12 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README docs/* scripts
-%attr(750,root,http) %dir %{_sysconfdir}/%{name}
-%attr(640,root,root) %config(noreplace) %{_sysconfdir}/apache-%{name}.conf
-%attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{name}/conf.php
-%attr(660,root,http) %config(noreplace) %ghost %{_sysconfdir}/%{name}/conf.php.bak
-%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/[!c]*.php
-%attr(640,root,http) %{_sysconfdir}/%{name}/*.xml
+%attr(750,root,http) %dir %{_sysconfdir}/%{_hordeapp}
+%attr(640,root,root) %config(noreplace) %{_sysconfdir}/apache-%{_hordeapp}.conf
+%attr(660,root,http) %config(noreplace) %{_sysconfdir}/%{_hordeapp}/conf.php
+%attr(660,root,http) %config(noreplace) %ghost %{_sysconfdir}/%{_hordeapp}/conf.php.bak
+%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{_hordeapp}/[!c]*.php
+%attr(640,root,http) %{_sysconfdir}/%{_hordeapp}/*.xml
 
 %dir %{_appdir}
 %{_appdir}/*.php
