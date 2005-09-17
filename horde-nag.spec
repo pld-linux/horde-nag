@@ -1,23 +1,20 @@
-# TODO
-# - rename all horde packages to horde-*.spec
-
 %define	_hordeapp nag
 #define	_snap	2005-08-01
 #define	_rc		rc1
-%define	_rel	0.5
+%define	_rel	0.1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
 Summary(pl):	Nag - zarz±dca list zadañ
-Name:		%{_hordeapp}
+Name:		horde-%{_hordeapp}
 Version:	2.0.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
 # Source0-md5:	7aa928522dadda94f02dfcbc5fb90058
-Source1:	%{name}.conf
-Patch0:		%{name}-prefs.patch
+Source1:	%{_hordeapp}.conf
+Patch0:		%{_hordeapp}-prefs.patch
 URL:		http://www.horde.org/nag/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.226
@@ -25,6 +22,7 @@ BuildRequires:	tar >= 1:1.15.1
 Requires:	apache >= 1.3.33-2
 Requires:	apache(mod_access)
 Requires:	horde >= 3.0
+Obsoletes:	%{_hordeapp}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
