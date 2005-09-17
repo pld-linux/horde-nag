@@ -1,26 +1,25 @@
 # TODO
-# - rename nag.spec to tldp-nag.spec
-# - rename this spec to nag.spec
-# - or forget it and rename all horde packages to horde-*.spec
+# - rename all horde packages to horde-*.spec
 
+%define	_hordeapp nag
+#define	_snap	2005-08-01
 #define	_rc		rc1
-%define	_rel	0.3
-
-%define		_hordeapp	nag
+%define	_rel	0.5
+#
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
 Summary(pl):	Nag - zarz±dca list zadañ
-Name:		nag
+Name:		%{_hordeapp}
 Version:	2.0.2
-Release:	%{?_rc:%{_rc}.}%{_rel}
+Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
-Vendor:		The Horde Project
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
 # Source0-md5:	7aa928522dadda94f02dfcbc5fb90058
 Source1:	%{name}.conf
 Patch0:		%{name}-prefs.patch
 URL:		http://www.horde.org/nag/
+BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.226
 BuildRequires:	tar >= 1:1.15.1
 Requires:	apache >= 1.3.33-2
@@ -33,9 +32,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautocompressdoc  CREDITS
 %define		_noautoreq	'pear(Horde.*)'
 
-%define		hordedir		/usr/share/horde
-%define		_sysconfdir		/etc/horde.org
-%define		_appdir			%{hordedir}/%{_hordeapp}
+%define		hordedir	/usr/share/horde
+%define		_sysconfdir	/etc/horde.org
+%define		_appdir		%{hordedir}/%{_hordeapp}
 
 %description
 Nag is the Horde task list application. It stores todo items, things
@@ -56,30 +55,30 @@ General Public License. Wiêcej informacji (w³±cznie z pomoc± dla
 Naga) mo¿na znale¼æ na stronie <http://www.horde.org/>.
 
 %prep
-%setup -q -n %{?_snap:nag}%{!?_snap:nag-h3-%{version}%{?_rc:-%{_rc}}}
+%setup -q -c -T -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
+tar zxf %{SOURCE0} --strip-components=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/cron.daily,%{_sysconfdir}/%{_hordeapp}} \
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp} \
 	$RPM_BUILD_ROOT%{_appdir}/{docs,lib,locale,scripts,templates,themes}
 
-cp -pR	*.php			$RPM_BUILD_ROOT%{_appdir}
+cp -a *.php			$RPM_BUILD_ROOT%{_appdir}
 for i in config/*.dist; do
-	cp -p $i $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/$(basename $i .dist)
+	cp -a $i $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/$(basename $i .dist)
 done
-echo "<?php ?>" > 		$RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.php
-install  config/conf.xml $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.xml
-> $RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.php.bak
+echo '<?php ?>' >		$RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.php
+cp -p config/conf.xml	$RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.xml
+touch					$RPM_BUILD_ROOT%{_sysconfdir}/%{_hordeapp}/conf.php.bak
 
 cp -pR	lib/*			$RPM_BUILD_ROOT%{_appdir}/lib
 cp -pR	locale/*		$RPM_BUILD_ROOT%{_appdir}/locale
 cp -pR	templates/*		$RPM_BUILD_ROOT%{_appdir}/templates
 cp -pR	themes/*		$RPM_BUILD_ROOT%{_appdir}/themes
 
-ln -s %{_sysconfdir}/%{_hordeapp} 	$RPM_BUILD_ROOT%{_appdir}/config
+ln -s %{_sysconfdir}/%{_hordeapp} $RPM_BUILD_ROOT%{_appdir}/config
 ln -s %{_docdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
-
-install %{SOURCE1} 		$RPM_BUILD_ROOT%{_sysconfdir}/apache-%{_hordeapp}.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache-%{_hordeapp}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -94,7 +93,7 @@ if [ "$1" = 1 ]; then
 IMPORTANT:
 If you are installing for the first time, You may need to
 create the Nag database tables. To do so run:
-zcat %{_docdir}/%{name}-%{version}/scripts/sql/nag.sql.gz | mysql horde
+zcat %{_docdir}/%{name}-%{version}/scripts/sql/%{_hordeapp}.sql.gz | mysql horde
 EOF
 fi
 
