@@ -19,10 +19,11 @@ URL:		http://www.horde.org/nag/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.226
 BuildRequires:	tar >= 1:1.15.1
-Requires:	apache >= 1.3.33-2
 Requires:	apache(mod_access)
 Requires:	horde >= 3.0
+Requires:	webserver = apache
 Obsoletes:	%{_hordeapp}
+Conflicts:	apache < 1.3.33-2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,8 +50,8 @@ rzeczy do zrobienia, p³atno¶ci w danym tygodniu itp. Jest bardzo
 podobna w funkcjonalno¶ci do aplikacji Palm ToDo.
 
 Projekt Horde tworzy aplikacje WWW w PHP i wydaje je na licencji GNU
-General Public License. Wiêcej informacji (w³±cznie z pomoc± dla
-Naga) mo¿na znale¼æ na stronie <http://www.horde.org/>.
+General Public License. Wiêcej informacji (w³±cznie z pomoc± dla Naga)
+mo¿na znale¼æ na stronie <http://www.horde.org/>.
 
 %prep
 %setup -q -c -T -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
