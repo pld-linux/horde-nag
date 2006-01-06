@@ -1,7 +1,7 @@
 %define	_hordeapp nag
 #define	_snap	2005-08-01
 %define	_rc		rc1
-#%define	_rel	1
+%define	_rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
