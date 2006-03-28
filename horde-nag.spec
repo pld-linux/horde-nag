@@ -1,7 +1,7 @@
 %define	_hordeapp nag
 #define	_snap	2005-08-01
-%define	_rc		rc2
-%define	_rel	0.1
+#define	_rc		rc2
+%define	_rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
@@ -11,9 +11,9 @@ Version:	2.1
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
-#Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
-Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
-# Source0-md5:	56a4aaf4033253a9e17e274fed2aefe8
+Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
+# Source0-md5:	3d6c93edabf7dc29e896d3ac5c8d9115
+#Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
 Source1:	%{_hordeapp}.conf
 Patch0:		%{_hordeapp}-prefs.patch
 URL:		http://www.horde.org/nag/
