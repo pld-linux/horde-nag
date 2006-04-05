@@ -1,7 +1,7 @@
 %define	_hordeapp nag
 #define	_snap	2005-08-01
 #define	_rc		rc2
-%define	_rel	1
+%define	_rel	2
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
@@ -62,6 +62,7 @@ rm -f {,*/}.htaccess
 for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
 done
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
