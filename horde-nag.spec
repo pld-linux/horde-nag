@@ -5,7 +5,7 @@
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
-Summary(pl):	Nag - zarz±dca list zadañ
+Summary(pl.UTF-8):   Nag - zarzÄ…dca list zadaÅ„
 Name:		horde-%{_hordeapp}
 Version:	2.1.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
@@ -45,14 +45,14 @@ The Horde Project writes web applications in PHP and releases them
 under the GNU General Public License. For more information (including
 help with Nag) please visit <http://www.horde.org/>.
 
-%description -l pl
-Nag to aplikacja do zarz±dzania zadaniami dla Horde. Przechowuje
-rzeczy do zrobienia, p³atno¶ci w danym tygodniu itp. Jest bardzo
-podobna w funkcjonalno¶ci do aplikacji Palm ToDo.
+%description -l pl.UTF-8
+Nag to aplikacja do zarzÄ…dzania zadaniami dla Horde. Przechowuje
+rzeczy do zrobienia, pÅ‚atnoÅ›ci w danym tygodniu itp. Jest bardzo
+podobna w funkcjonalnoÅ›ci do aplikacji Palm ToDo.
 
 Projekt Horde tworzy aplikacje WWW w PHP i wydaje je na licencji GNU
-General Public License. Wiêcej informacji (w³±cznie z pomoc± dla Naga)
-mo¿na znale¼æ na stronie <http://www.horde.org/>.
+General Public License. WiÄ™cej informacji (wÅ‚Ä…cznie z pomocÄ… dla Naga)
+moÅ¼na znaleÅºÄ‡ na stronie <http://www.horde.org/>.
 
 %prep
 %setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
