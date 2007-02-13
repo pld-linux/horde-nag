@@ -5,7 +5,7 @@
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
-Summary(pl.UTF-8):   Nag - zarządca list zadań
+Summary(pl.UTF-8):	Nag - zarządca list zadań
 Name:		horde-%{_hordeapp}
 Version:	2.1.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
