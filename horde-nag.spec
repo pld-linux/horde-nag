@@ -1,4 +1,3 @@
-1;2c1;2c# $Revision: 1.35 $, $Date: 2007-08-01 11:41:07 $
 %define	_hordeapp nag
 #define	_snap	2005-08-01
 #define	_rc		rc2
