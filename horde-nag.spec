@@ -1,19 +1,19 @@
 %define	_hordeapp nag
 #define	_snap	2005-08-01
-#define	_rc		rc2
-%define	_rel	2
+%define	_rc		rc1
+%define	_rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
-Summary(pl.UTF-8):	Nag - zarządca list zadań
+Summary(pl.UTF-8):	Nag - zarz??dca list zada??
 Name:		horde-%{_hordeapp}
-Version:	2.1.3
+Version:	2.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
-# Source0-md5:	8d4f4874a1e77f0562516a13a6097028
-#Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
+#Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}.tar.gz
+Source0:	ftp://ftp.horde.org/pub/nag/%{_hordeapp}-h3-%{version}-%{_rc}.tar.gz
+# Source0-md5:	28778e1af471bd2353a01407cf75ab05
 Source1:	%{_hordeapp}.conf
 Patch0:		%{_hordeapp}-prefs.patch
 URL:		http://www.horde.org/nag/
@@ -46,13 +46,13 @@ under the GNU General Public License. For more information (including
 help with Nag) please visit <http://www.horde.org/>.
 
 %description -l pl.UTF-8
-Nag to aplikacja do zarządzania zadaniami dla Horde. Przechowuje
-rzeczy do zrobienia, płatności w danym tygodniu itp. Jest bardzo
-podobna w funkcjonalności do aplikacji Palm ToDo.
+Nag to aplikacja do zarz??dzania zadaniami dla Horde. Przechowuje
+rzeczy do zrobienia, p??atno??ci w danym tygodniu itp. Jest bardzo
+podobna w funkcjonalno??ci do aplikacji Palm ToDo.
 
 Projekt Horde tworzy aplikacje WWW w PHP i wydaje je na licencji GNU
-General Public License. Więcej informacji (włącznie z pomocą dla Naga)
-można znaleźć na stronie <http://www.horde.org/>.
+General Public License. Wi??cej informacji (w????cznie z pomoc?? dla Naga)
+mo??na znale???? na stronie <http://www.horde.org/>.
 
 %prep
 %setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
