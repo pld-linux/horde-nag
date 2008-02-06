@@ -1,11 +1,11 @@
---- nag-2.1/config/prefs.php.dist	2005-02-15 22:21:35.000000000 +0200
-+++ nag-2.1/config/prefs.php	2005-08-02 11:16:33.000000000 +0300
+--- nag-2.2-rc2/config/prefs.php~	2008-02-07 01:11:09.000000000 +0200
++++ nag-2.2-rc2/config/prefs.php	2008-02-07 01:11:40.867740918 +0200
 @@ -6,7 +6,7 @@
   */
  
  // Make sure that constants are defined.
--@define('NAG_BASE', dirname(__FILE__) . '/..');
-+@define('NAG_BASE', '/usr/share/horde/nag');
- require_once NAG_BASE . '/lib/Nag.php';
+-require_once dirname(__FILE__) . '/../lib/Nag.php';
++require_once '/usr/share/horde/nag/lib/Nag.php';
  
  $prefGroups['display'] = array(
+     'column' => _("General Options"),
