@@ -1,19 +1,15 @@
 %define		hordeapp nag
-#define		_snap	2005-08-01
-%define		subver		rc2
-%define		rel	1
 #
 %include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
 Summary(pl.UTF-8):	Nag - zarządca list zadań
 Name:		horde-%{hordeapp}
-Version:	2.2
-Release:	%{?subver:0.%{subver}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{rel}
+Version:	2.3
+Release:	0.1
 License:	GPL v2
 Group:		Applications/WWW
-#Source0:	ftp://ftp.horde.org/pub/nag/%{hordeapp}-h3-%{version}.tar.gz
-Source0:	ftp://ftp.horde.org/pub/nag/%{hordeapp}-h3-%{version}-%{subver}.tar.gz
-# Source0-md5:	2d2cfbde4a1e792eaeeb655489c3a5ab
+Source0:	ftp://ftp.horde.org/pub/nag/%{hordeapp}-h3-%{version}.tar.gz
+# Source0-md5:	c112fea068439696f417cf31ebae15d0
 Source1:	%{hordeapp}.conf
 Patch0:		%{hordeapp}-prefs.patch
 URL:		http://www.horde.org/nag/
@@ -55,8 +51,7 @@ General Public License. Więcej informacji (włącznie z pomocą dla Naga)
 można znaleźć na stronie <http://www.horde.org/>.
 
 %prep
-%setup -qcT -n %{?_snap:%{hordeapp}-%{_snap}}%{!?_snap:%{hordeapp}-%{version}%{?subver:-%{subver}}}
-tar zxf %{SOURCE0} --strip-components=1
+%setup -q
 
 for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
