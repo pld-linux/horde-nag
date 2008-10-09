@@ -49,7 +49,7 @@ General Public License. Więcej informacji (włącznie z pomocą dla Naga)
 można znaleźć na stronie <http://www.horde.org/>.
 
 %prep
-%setup -q
+%setup -q -n %{_hordeapp}-h3-%{version}
 
 for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
