@@ -4,12 +4,12 @@
 Summary:	Nag Task List Manager
 Summary(pl.UTF-8):	Nag - zarządca list zadań
 Name:		horde-%{hordeapp}
-Version:	2.3.4
+Version:	2.3.5
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/nag/%{hordeapp}-h3-%{version}.tar.gz
-# Source0-md5:	43c6c2420e5ce594c9b15b0929be67df
+# Source0-md5:	e10dbb2a3d452d4d492c52c6e5e190b7
 Source1:	%{hordeapp}.conf
 Patch0:		%{hordeapp}-prefs.patch
 URL:		http://www.horde.org/nag/
