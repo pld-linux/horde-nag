@@ -5,7 +5,7 @@ Summary:	Nag Task List Manager
 Summary(pl.UTF-8):	Nag - zarządca list zadań
 Name:		horde-%{hordeapp}
 Version:	2.3.6
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/nag/%{hordeapp}-h3-%{version}.tar.gz
@@ -23,7 +23,7 @@ Conflicts:	apache-base < 2.4.0-1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreq	'pear(/usr/share/horde.*)' 'pear(Horde.*)'
+%define		_noautoreq_pear	/usr/share/horde.* Horde.*
 
 %define		hordedir	/usr/share/horde
 %define		_appdir		%{hordedir}/%{hordeapp}
