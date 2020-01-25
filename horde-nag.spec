@@ -1,6 +1,5 @@
 %define		hordeapp nag
 #
-%include	/usr/lib/rpm/macros.php
 Summary:	Nag Task List Manager
 Summary(pl.UTF-8):	Nag - zarządca list zadań
 Name:		horde-%{hordeapp}
