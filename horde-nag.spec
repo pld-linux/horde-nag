@@ -54,7 +54,7 @@ można znaleźć na stronie <http://www.horde.org/>.
 for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
 done
-%patch0 -p1
+%patch -P0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
